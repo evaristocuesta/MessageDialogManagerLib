@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageDialogManagerLib", "MessageDialogManagerLib\MessageDialogManagerLib.csproj", "{AFF53905-D1F8-49A2-B75C-584E73FC7C24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFF53905-D1F8-49A2-B75C-584E73FC7C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF53905-D1F8-49A2-B75C-584E73FC7C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF53905-D1F8-49A2-B75C-584E73FC7C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF53905-D1F8-49A2-B75C-584E73FC7C24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {294B7020-3632-48C2-BF40-DFF00FE15C57}
+	EndGlobalSection
+EndGlobal

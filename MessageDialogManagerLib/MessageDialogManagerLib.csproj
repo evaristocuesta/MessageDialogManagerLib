@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <Authors>Evaristo Cuesta</Authors>
+    <Company>Evaristo Cuesta</Company>
+    <Description>Library to easily use dialogs from a View Model in a Mahapps Metro App.</Description>
+    <PackageTags>mahapps messagebox progress folder file browser dialogs custom ok cancel info</PackageTags>
+    <PackageProjectUrl>https://github.com/evaristocuesta/MessageDialogManagerLib</PackageProjectUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.2.0" />
+    <PackageReference Include="WPFFolderBrowser" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>
