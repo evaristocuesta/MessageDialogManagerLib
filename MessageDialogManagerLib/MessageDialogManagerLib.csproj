@@ -7,12 +7,26 @@
     <Description>Library to easily use dialogs from a View Model in a Mahapps Metro App.</Description>
     <PackageTags>mahapps messagebox progress folder file browser dialogs custom ok cancel info</PackageTags>
     <PackageProjectUrl>https://github.com/evaristocuesta/MessageDialogManagerLib</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/evaristocuesta/MessageDialogManagerLib</RepositoryUrl>
+    <PackageId>MessageDialogManagerLib</PackageId>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © 2020 Evaristo Cuesta</Copyright>
+    <iconUrl>https://raw.githubusercontent.com/evaristocuesta/MessageDialogManagerLib/master/logo.png</iconUrl>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
     <PackageReference Include="WPFFolderBrowser" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
