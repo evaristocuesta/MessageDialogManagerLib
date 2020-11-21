@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworks>net452;net46;net47;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
     <Authors>Evaristo Cuesta</Authors>
     <Company>Evaristo Cuesta</Company>
     <Description>Library to easily use dialogs from a View Model in a Mahapps Metro App.</Description>
@@ -15,11 +15,16 @@
     <Copyright>Copyright © 2020 Evaristo Cuesta</Copyright>
     <iconUrl>https://raw.githubusercontent.com/evaristocuesta/MessageDialogManagerLib/master/logo.png</iconUrl>
     <PackageIcon>logo.png</PackageIcon>
+    <UseWpf>true</UseWpf>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FolderBrowserEx" Version="1.0.0" />
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
-    <PackageReference Include="WPFFolderBrowser" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

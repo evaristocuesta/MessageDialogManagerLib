@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace MessageDialogManagerLib
+namespace CommandLibrary
 {
-    class Command : ICommand
+    public class Command : ICommand
     {
         private readonly Action _execute;
 
@@ -11,7 +11,12 @@ namespace MessageDialogManagerLib
 
         public Command(Action execute, Func<bool> canExecute)
         {
-            _execute = execute ?? throw new ArgumentNullException("execute");
+            if (execute == null)
+            {
+                throw new ArgumentNullException("execute");
+            }
+
+            _execute = execute;
 
             if (canExecute != null)
             {

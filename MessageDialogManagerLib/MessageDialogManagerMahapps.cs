@@ -1,20 +1,20 @@
-﻿using MahApps.Metro.Controls;
+﻿using FolderBrowserEx;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows;
-using System.Windows.Input;
-using WPFFolderBrowser;
+using System.Windows.Forms;
+using FolderBrowserDialog = FolderBrowserEx.FolderBrowserDialog;
 
 namespace MessageDialogManagerLib
 {
     public class MessageDialogManagerMahapps : IMessageDialogManager
     {
         private ProgressDialogController _controller;
-        private Application _app;
+        private System.Windows.Application _app;
         /// <summary>
         /// We have to use this private variable instead a local variable to show a custom dialog
         /// to avoid an error closing the dialog
@@ -26,7 +26,7 @@ namespace MessageDialogManagerLib
         public string FolderPath { get; set; }
         public string FilePath { get; set; }
 
-        public MessageDialogManagerMahapps(Application app)
+        public MessageDialogManagerMahapps(System.Windows.Application app)
         {
             _app = app;
             _customDialogs = new Dictionary<IDialogViewModel, CustomDialog>();
@@ -77,18 +77,12 @@ namespace MessageDialogManagerLib
         public bool ShowFolderBrowser(string title, string initialDirectory)
         {
             bool res = false;
-            WPFFolderBrowserDialog ofd = new WPFFolderBrowserDialog();
-
-            if (Directory.Exists(initialDirectory))
-                ofd.InitialDirectory = initialDirectory;
-            else
-                ofd.InitialDirectory = "";
-            ofd.Title = title;
-
-            if (ofd.ShowDialog() == true)
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Title = title;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                FolderPath = ofd.FileName;
-                res = true;
+                FolderPath = folderBrowserDialog.SelectedFolder;
+                res = true;    
             }
             return res;
         }
@@ -97,7 +91,7 @@ namespace MessageDialogManagerLib
         {
             bool res = false;
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             if (Directory.Exists(initialPath))
                 openFileDialog.InitialDirectory = initialPath;
             else
