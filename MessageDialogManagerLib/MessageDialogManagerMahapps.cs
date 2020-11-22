@@ -1,7 +1,5 @@
-﻿using FolderBrowserEx;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Win32;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;

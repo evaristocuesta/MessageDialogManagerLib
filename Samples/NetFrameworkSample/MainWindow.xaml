@@ -18,10 +18,22 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Content="Folder Browser"
+        <Button Content="Show Folder Browser"
                 Command="{Binding ShowFolderBrowserCommand}" />
-        <Button Content="File Browser"
+        <Button Content="Show File Browser"
                 Grid.Column="1"
                 Command="{Binding ShowFileBrowserCommand}" />
+        <Button Content="Show Info Dialog"
+                Grid.Column="2"
+                Command="{Binding ShowInfoDialogCommand}" />
+        <Button Content="Show Ok Cancel Dialog"
+                Grid.Column="0"
+                Grid.Row="1"
+                Command="{Binding ShowOkCancelDialogCommand}" />
+        <Button Content="Show Progress Dialog"
+                Grid.Column="1"
+                Grid.Row="1"
+                Command="{Binding ShowProgressCommand}" />
+        
     </Grid>
 </mahapps:MetroWindow>
