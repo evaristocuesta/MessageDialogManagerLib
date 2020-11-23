@@ -127,6 +127,11 @@ namespace MessageDialogManagerLib
                 FolderPath = folderBrowserDialog.SelectedFolder;
                 res = true;    
             }
+            else
+            {
+                FolderPath = string.Empty;
+                res = false;
+            }
             return res;
         }
 
@@ -152,6 +157,11 @@ namespace MessageDialogManagerLib
             {
                 FilePath = openFileDialog.FileName;
                 res = true;
+            }
+            else
+            {
+                FilePath = string.Empty;
+                res = false;
             }
             return res;
         }

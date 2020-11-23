@@ -41,6 +41,8 @@ namespace NetFrameworkSample.ViewModel
         {
             if (_messageDialogManager.ShowFolderBrowser("Select a folder", ""))
                 await _messageDialogManager.ShowInfoDialogAsync("Folder Selected", _messageDialogManager.FolderPath);
+            else
+                await _messageDialogManager.ShowInfoDialogAsync("No folder has been selected", _messageDialogManager.FolderPath);
         }
 
         private bool ShowFileBrowserCommandCanExecute()
@@ -52,6 +54,8 @@ namespace NetFrameworkSample.ViewModel
         {
             if (_messageDialogManager.ShowFileBrowser("Select a file", "", "*.* | *.*"))
                 await _messageDialogManager.ShowInfoDialogAsync("File Selected", _messageDialogManager.FilePath);
+            else
+                await _messageDialogManager.ShowInfoDialogAsync("No file has been selected", _messageDialogManager.FilePath);
         }
 
         private async void ShowInfoDialogCommandExecute()
