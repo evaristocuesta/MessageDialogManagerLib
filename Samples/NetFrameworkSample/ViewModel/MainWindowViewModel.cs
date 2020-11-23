@@ -3,7 +3,7 @@ using MessageDialogManagerLib;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace NetFrameworkSample
+namespace NetFrameworkSample.ViewModel
 {
     public class MainWindowViewModel
     {
@@ -17,6 +17,7 @@ namespace NetFrameworkSample
             ShowInfoDialogCommand = new Command(ShowInfoDialogCommandExecute, ShowInfoDialogCommandCanExecute);
             ShowOkCancelDialogCommand = new Command(ShowOkCancelDialogCommandExecute, ShowOkCancelDialogCommandCanExecute);
             ShowProgressCommand = new Command(ShowProgressCommandExecute, ShowProgressCommandCanExecute);
+            ShowCustomDialogCommand = new Command(ShowCustomDialogCommandExecute, ShowCustomDialogCommandCanExecute);
         }
 
         public ICommand ShowFolderBrowserCommand { get; private set; }
@@ -28,6 +29,8 @@ namespace NetFrameworkSample
         public ICommand ShowOkCancelDialogCommand { get; private set; }
 
         public ICommand ShowProgressCommand { get; private set; }
+
+        public ICommand ShowCustomDialogCommand { get; private set; }
 
         private bool ShowFolderBrowserCommandCanExecute()
         {
@@ -98,6 +101,16 @@ namespace NetFrameworkSample
                 _messageDialogManager.UpdateProgress(i * 10);
                 _messageDialogManager.UpdateMessageProgress($"Step {i} done");
             }
+        }
+
+        private bool ShowCustomDialogCommandCanExecute()
+        {
+            return true;
+        }
+
+        private async void ShowCustomDialogCommandExecute()
+        {
+            await _messageDialogManager.ShowDialogAsync(new AboutViewModel());
         }
     }
 }

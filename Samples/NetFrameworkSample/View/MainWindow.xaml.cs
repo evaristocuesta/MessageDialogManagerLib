@@ -1,7 +1,8 @@
 ﻿using MahApps.Metro.Controls;
 using MessageDialogManagerLib;
+using NetFrameworkSample.ViewModel;
 
-namespace NetFrameworkSample
+namespace NetFrameworkSample.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
