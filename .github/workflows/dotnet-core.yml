@@ -23,6 +23,10 @@ jobs:
       run: dotnet restore    
     - name: Build MessageDialogManagerLib
       run: dotnet build MessageDialogManagerLib\MessageDialogManagerLib.csproj --configuration Release --no-restore
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+    - name: Restore NuGet packages
+      run: nuget restore MessageDialogManagerLib.sln
     - name: Build CommandLibrary
       run: msbuild Samples/CommandLibrary/CommandLibrary.csproj /p:Configuration=Release
     - name: Build Sample
