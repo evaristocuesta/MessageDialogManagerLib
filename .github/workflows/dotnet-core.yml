@@ -21,3 +21,11 @@ jobs:
       run: dotnet restore    
     - name: Build MessageDialogManagerLib
       run: dotnet build MessageDialogManagerLib\MessageDialogManagerLib.csproj --configuration Release --no-restore
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2   
+    - name: Build CommandLibrary
+      run: msbuild Samples/CommandLibrary/CommandLibrary.csproj /p:Configuration=Release
+    - name: Build Sample
+      run: msbuild Samples/NetFrameworkSample/NetFrameworkSample.csproj /p:Configuration=Release
