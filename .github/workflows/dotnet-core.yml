@@ -17,7 +17,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
     - name: Install dependencies
       run: dotnet restore    
     - name: Build MessageDialogManagerLib
       run: dotnet build MessageDialogManagerLib\MessageDialogManagerLib.csproj --configuration Release --no-restore
+    - name: Build CommandLibrary
+      run: msbuild Samples/CommandLibrary/CommandLibrary.csproj /p:Configuration=Release
+    - name: Build Sample
+      run: msbuild Samples/NetFrameworkSample/NetFrameworkSample.csproj /p:Configuration=Release
