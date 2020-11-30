@@ -12,13 +12,13 @@ namespace MessageDialogManagerLib
     public class MessageDialogManagerMahapps : IMessageDialogManager
     {
         private ProgressDialogController _controller;
-        private System.Windows.Application _app;
+        private readonly System.Windows.Application _app;
         /// <summary>
         /// We have to use this private variable instead a local variable to show a custom dialog
         /// to avoid an error closing the dialog
         /// </summary>
         private CustomDialog _customView;
-        private Dictionary<IDialogViewModel, CustomDialog> _customDialogs;
+        private readonly Dictionary<IDialogViewModel, CustomDialog> _customDialogs;
         private MetroWindow MetroWindow => (MetroWindow)_app.MainWindow;
 
         /// <summary>
@@ -30,6 +30,11 @@ namespace MessageDialogManagerLib
         /// Gets the selected file
         /// </summary>
         public string FilePath { get; set; }
+
+        /// <summary>
+        /// Gets the file to save
+        /// </summary>
+        public string FilePathToSave { get; set; }
 
         public MessageDialogManagerMahapps(System.Windows.Application app)
         {
@@ -119,13 +124,15 @@ namespace MessageDialogManagerLib
         /// <returns>Returns if a folder has been selected</returns>
         public bool ShowFolderBrowser(string title, string initialDirectory)
         {
-            bool res = false;
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Title = title;
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
+            {
+                Title = title
+            };
+            bool res;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 FolderPath = folderBrowserDialog.SelectedFolder;
-                res = true;    
+                res = true;
             }
             else
             {
@@ -144,8 +151,6 @@ namespace MessageDialogManagerLib
         /// <returns>Returns if a file has been selected</returns>
         public bool ShowFileBrowser(string title, string initialPath, string filter)
         {
-            bool res = false;
-
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             if (Directory.Exists(initialPath))
                 openFileDialog.InitialDirectory = initialPath;
@@ -153,6 +158,7 @@ namespace MessageDialogManagerLib
                 openFileDialog.InitialDirectory = "";
             openFileDialog.Filter = filter;
             openFileDialog.Title = title;
+            bool res;
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
@@ -163,6 +169,44 @@ namespace MessageDialogManagerLib
                 FilePath = string.Empty;
                 res = false;
             }
+            return res;
+        }
+
+        /// <summary>
+        /// Shows a save file dialog
+        /// </summary>
+        /// <param name="title">Sets the title of the dialog</param>
+        /// <param name="fileName">Sets the file's name</param>
+        /// <param name="defaultExt">Sets the default file's extension</param>
+        /// <param name="filter">Sets the filter</param>
+        /// <returns>Returns if a file has been saved</returns>
+        public bool ShowSaveFileDialog(string title, string initialPath, string fileName, string defaultExt, string filter)
+        {
+            bool res = false;
+
+            Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Title = title,
+                FileName = fileName,
+                DefaultExt = defaultExt,
+                Filter = filter
+            };
+            if (Directory.Exists(initialPath))
+                saveFileDialog.InitialDirectory = initialPath;
+            else
+                saveFileDialog.InitialDirectory = "";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                res = true;
+                FilePathToSave = saveFileDialog.FileName;
+            }
+            else
+            {
+                FilePathToSave = "";
+            }
+
+
             return res;
         }
 
@@ -199,8 +243,7 @@ namespace MessageDialogManagerLib
             CustomDialog customView = null;
             foreach (var resource in _app.Resources.Values)
             {
-                var dataTemplate = resource as DataTemplate;
-                if (dataTemplate != null && dataTemplate.DataType.Equals(viewModel.GetType()))
+                if (resource is DataTemplate dataTemplate && dataTemplate.DataType.Equals(viewModel.GetType()))
                 {
                     customView = dataTemplate.LoadContent() as CustomDialog;
                     break;

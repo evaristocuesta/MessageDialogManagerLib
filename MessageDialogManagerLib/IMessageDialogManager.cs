@@ -32,6 +32,22 @@ namespace MessageDialogManagerLib
         string FilePath { get; set; }
 
         /// <summary>
+        /// Shows a save file dialog
+        /// </summary>
+        /// <param name="title">Sets the title of the dialog</param>
+        /// <param name="initialPath">Sets the initial path of the dialog</param>
+        /// <param name="fileName">Sets the file's name</param>
+        /// <param name="defaultExt">Sets the default file's extension</param>
+        /// <param name="filter">Sets the filter</param>
+        /// <returns>Returns if a file has been saved</returns>
+        bool ShowSaveFileDialog(string title, string initialPath, string fileName, string defaultExt, string filter);
+
+        /// <summary>
+        /// Gets the file to save
+        /// </summary>
+        string FilePathToSave { get; set; }
+
+        /// <summary>
         /// Shows a ok and cancel dialog
         /// </summary>
         /// <param name="text">Sets the text of the dialog</param>

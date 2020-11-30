@@ -7,7 +7,7 @@ namespace NetFrameworkSample.ViewModel
 {
     public class MainWindowViewModel
     {
-        private IMessageDialogManager _messageDialogManager;
+        private readonly IMessageDialogManager _messageDialogManager;
 
         public MainWindowViewModel(IMessageDialogManager messageDialogManager)
         {
@@ -18,6 +18,7 @@ namespace NetFrameworkSample.ViewModel
             ShowOkCancelDialogCommand = new Command(ShowOkCancelDialogCommandExecute, ShowOkCancelDialogCommandCanExecute);
             ShowProgressCommand = new Command(ShowProgressCommandExecute, ShowProgressCommandCanExecute);
             ShowCustomDialogCommand = new Command(ShowCustomDialogCommandExecute, ShowCustomDialogCommandCanExecute);
+            ShowSaveFileDialogCommand = new Command(ShowSaveFileDialogCommandExecute, ShowSaveFileDialogCommandCanExecute);
         }
 
         public ICommand ShowFolderBrowserCommand { get; private set; }
@@ -31,6 +32,8 @@ namespace NetFrameworkSample.ViewModel
         public ICommand ShowProgressCommand { get; private set; }
 
         public ICommand ShowCustomDialogCommand { get; private set; }
+
+        public ICommand ShowSaveFileDialogCommand { get; private set; }
 
         private bool ShowFolderBrowserCommandCanExecute()
         {
@@ -115,6 +118,19 @@ namespace NetFrameworkSample.ViewModel
         private async void ShowCustomDialogCommandExecute()
         {
             await _messageDialogManager.ShowDialogAsync(new AboutViewModel());
+        }
+
+        private bool ShowSaveFileDialogCommandCanExecute()
+        {
+            return true;
+        }
+
+        private async void ShowSaveFileDialogCommandExecute()
+        {
+            if (_messageDialogManager.ShowSaveFileDialog("Save a file", "", "fileName", ".txt", "Text documents (.txt)|*.txt"))
+                await _messageDialogManager.ShowInfoDialogAsync("File Selected to Save", _messageDialogManager.FilePathToSave);
+            else
+                await _messageDialogManager.ShowInfoDialogAsync("No file has been selected to save", _messageDialogManager.FilePathToSave);
         }
     }
 }
