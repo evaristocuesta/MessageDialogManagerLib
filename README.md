@@ -268,5 +268,5 @@ Copyright © 2020 Evaristo Cuesta
 
 ## Credits
 
-This project use [Mahapps.Metro](https://mahapps.com/) and [FolderBrowserEx](https://github.com/evaristocuesta/FolderBrowserEx).
+This project uses [Mahapps.Metro](https://mahapps.com/) and [FolderBrowserEx](https://github.com/evaristocuesta/FolderBrowserEx).
 
