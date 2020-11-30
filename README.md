@@ -1,7 +1,7 @@
 # MessageDialogManagerLib
 [![NuGet](https://img.shields.io/nuget/v/MessageDialogManagerLib)](https://nuget.org/packages/MessageDialogManagerLib/) [![.NET Core](https://github.com/evaristocuesta/MessageDialogManagerLib/workflows/.NET%20Core/badge.svg)](https://github.com/evaristocuesta/MessageDialogManagerLib/actions)
 
-**MessageDialogManagerLib** is a library to easily use dialogs from ViewModels in WPF Mahapps.Metro applications. This library uses [Mahapps.Metro](https://mahapps.com/) to show info, progress, ok/cancel or custom dialog. To show a file browser, this library uses Microsoft.Win32.OpenFileDialog and to show a folder browser, this library uses [FolderBrowserEx](https://github.com/evaristocuesta/FolderBrowserEx)
+**MessageDialogManagerLib** is a library to easily use dialogs from ViewModels in WPF Mahapps.Metro applications. This library uses [Mahapps.Metro](https://mahapps.com/) to show info, progress, ok/cancel or custom dialog. To show an open file dialog, this library uses Microsoft.Win32.OpenFileDialog, to show a save file dialog uses Microsoft.Win32.SaveFileDialog and to show a folder browser, this library uses [FolderBrowserEx](https://github.com/evaristocuesta/FolderBrowserEx).
 
 Supporting .NET Framework (4.5+) and .NET Core (3.0 and 3.1)
 
