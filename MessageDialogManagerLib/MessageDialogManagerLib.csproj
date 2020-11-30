@@ -4,8 +4,8 @@
     <TargetFrameworks>net452;net46;net47;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
     <Authors>Evaristo Cuesta</Authors>
     <Company>Evaristo Cuesta</Company>
-    <Description>Library to easily use dialogs from a View Model in a Mahapps Metro App.</Description>
-    <PackageTags>mahapps messagebox progress folder file browser dialogs custom ok cancel info</PackageTags>
+    <Description>Library to easily use dialogs from a View Model in Mahapps.Metro applications.</Description>
+    <PackageTags>mahapps messagebox progress folder open save file browser dialogs custom ok cancel info OpenFileDialog SaveFileDialog FolderBrowserEx</PackageTags>
     <PackageProjectUrl>https://github.com/evaristocuesta/MessageDialogManagerLib</PackageProjectUrl>
     <RepositoryUrl>https://github.com/evaristocuesta/MessageDialogManagerLib</RepositoryUrl>
     <PackageId>MessageDialogManagerLib</PackageId>
