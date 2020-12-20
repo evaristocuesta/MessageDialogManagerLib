@@ -67,7 +67,8 @@ public interface IMessageDialogManager
     /// <param name="defaultExt">Sets the default file's extension</param>
     /// <param name="filter">Sets the filter</param>
     /// <returns>Returns if a file has been saved</returns>
-    bool ShowSaveFileDialog(string title, string initialPath, string fileName, string defaultExt, string filter);
+    bool ShowSaveFileDialog(string title, string initialPath, string fileName, 
+        string defaultExt, string filter);
 
     /// <summary>
     /// Gets the file to save
@@ -156,7 +157,9 @@ namespace NetFrameworkSample.ViewModel
         public MainWindowViewModel(IMessageDialogManager messageDialogManager)
         {
             _messageDialogManager = messageDialogManager;
-            ShowOkCancelDialogCommand = new Command(ShowOkCancelDialogCommandExecute, ShowOkCancelDialogCommandCanExecute);
+            ShowOkCancelDialogCommand = new Command(
+                ShowOkCancelDialogCommandExecute, 
+                ShowOkCancelDialogCommandCanExecute);
         }
 
         public ICommand ShowOkCancelDialogCommand { get; private set; }
