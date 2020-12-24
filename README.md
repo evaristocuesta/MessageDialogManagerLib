@@ -22,7 +22,7 @@ The aim of this project is to offer a library with an interface to easily inject
 
 To use this library, there are a few options:
 
-  - Download this repository
+  - Download the [Github repository](https://github.com/evaristocuesta/MessageDialogManagerLib)
   - Use the [MessageDialogManagerLib Nuget Package](https://nuget.org/packages/MessageDialogManagerLib/)
 
 To use this library, the WPF application has to use [Mahapps.Metro](https://mahapps.com/).
@@ -37,7 +37,7 @@ public interface IMessageDialogManager
     /// <param name="title">Sets the title of the dialog</param>
     /// <param name="initialPath">Sets the initial path of the dialog</param>
     /// <returns>Returns if a folder has been selected</returns>
-    bool ShowFolderBrowser(string title, string initialPath);
+    bool ShowFolderBrowser(string title, string initialPath, bool allowMultiSelect = false);
 
     /// <summary>
     /// Gets the selected folder
@@ -51,7 +51,7 @@ public interface IMessageDialogManager
     /// <param name="initialPath">Sets the initial path of the dialog</param>
     /// <param name="filter">Sets a filter to show only the files that meet the filter</param>
     /// <returns>Returns if a file has been selected</returns>
-    bool ShowFileBrowser(string title, string initialPath, string filter);
+    bool ShowFileBrowser(string title, string initialPath, string filter, bool allowMultiSelect = false);
 
     /// <summary>
     /// Gets the selected file
