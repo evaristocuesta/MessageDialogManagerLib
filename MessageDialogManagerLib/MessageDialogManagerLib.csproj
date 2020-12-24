@@ -17,14 +17,14 @@
     <PackageIcon>logo.png</PackageIcon>
     <UseWpf>true</UseWpf>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
-    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
+    <Version>1.0.3</Version>
     <PackageReleaseNotes>https://github.com/evaristocuesta/MessageDialogManagerLib/releases</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FolderBrowserEx" Version="1.0.0" />
+    <PackageReference Include="FolderBrowserEx" Version="1.0.1" />
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
   </ItemGroup>
 

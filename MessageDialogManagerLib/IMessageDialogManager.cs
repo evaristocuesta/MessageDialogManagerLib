@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MessageDialogManagerLib
 {
@@ -9,13 +10,19 @@ namespace MessageDialogManagerLib
         /// </summary>
         /// <param name="title">Sets the title of the dialog</param>
         /// <param name="initialPath">Sets the initial path of the dialog</param>
+        /// <param name="allowMultiSelect">Allow multiple folders selection</param>
         /// <returns>Returns if a folder has been selected</returns>
-        bool ShowFolderBrowser(string title, string initialPath);
+        bool ShowFolderBrowser(string title, string initialPath, bool allowMultiSelect = false);
 
         /// <summary>
         /// Gets the selected folder
         /// </summary>
-        string FolderPath { get; set; }
+        string FolderPath { get; }
+
+        /// <summary>
+        /// Gets selected folders when AllowMultiSelect is true.
+        /// </summary>
+        List<string> FolderPaths { get; }
 
         /// <summary>
         /// Shows a file browser dialog
@@ -23,13 +30,19 @@ namespace MessageDialogManagerLib
         /// <param name="title">Sets the title of the dialog</param>
         /// <param name="initialPath">Sets the initial path of the dialog</param>
         /// <param name="filter">Sets a filter to show only the files that meet the filter</param>
+        /// <param name="allowMultiSelect">Allow multiple files selection</param>
         /// <returns>Returns if a file has been selected</returns>
-        bool ShowFileBrowser(string title, string initialPath, string filter);
+        bool ShowFileBrowser(string title, string initialPath, string filter, bool allowMultiSelect = false);
 
         /// <summary>
         /// Gets the selected file
         /// </summary>
-        string FilePath { get; set; }
+        string FilePath { get; }
+
+        /// <summary>
+        /// Gets the selected files when AllowMultiSelect is true
+        /// </summary>
+        List<string> FilePaths { get; }
 
         /// <summary>
         /// Shows a save file dialog

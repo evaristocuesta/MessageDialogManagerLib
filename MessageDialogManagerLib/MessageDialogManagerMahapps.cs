@@ -24,12 +24,28 @@ namespace MessageDialogManagerLib
         /// <summary>
         /// Gets the selected folder
         /// </summary>
-        public string FolderPath { get; set; }
+        public string FolderPath 
+        {
+            get => FolderPaths != null && FolderPaths.Count >= 1 ? FolderPaths[0] : string.Empty;
+        }
+
+        /// <summary>
+        /// Gets selected folders when AllowMultiSelect is true.
+        /// </summary>
+        public List<string> FolderPaths { get; private set; }
 
         /// <summary>
         /// Gets the selected file
         /// </summary>
-        public string FilePath { get; set; }
+        public string FilePath 
+        {
+            get => FilePaths != null && FilePaths.Count >= 1 ? FilePaths[0] : string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the selected files when AllowMultiSelect is true
+        /// </summary>
+        public List<string> FilePaths { get; private set; }
 
         /// <summary>
         /// Gets the file to save
@@ -40,6 +56,8 @@ namespace MessageDialogManagerLib
         {
             _app = app;
             _customDialogs = new Dictionary<IDialogViewModel, CustomDialog>();
+            FolderPaths = new List<string>();
+            FilePaths = new List<string>();
         }
 
         /// <summary>
@@ -121,22 +139,24 @@ namespace MessageDialogManagerLib
         /// </summary>
         /// <param name="title">Sets the title of the dialog</param>
         /// <param name="initialPath">Sets the initial path of the dialog</param>
+        /// <param name="allowMultiSelect">Allow multiple folders selection</param>
         /// <returns>Returns if a folder has been selected</returns>
-        public bool ShowFolderBrowser(string title, string initialDirectory)
+        public bool ShowFolderBrowser(string title, string initialDirectory, bool allowMultiSelect = false)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
             {
-                Title = title
+                Title = title, 
+                AllowMultiSelect = allowMultiSelect
             };
             bool res;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                FolderPath = folderBrowserDialog.SelectedFolder;
+                FolderPaths = folderBrowserDialog.SelectedFolders;
                 res = true;
             }
             else
             {
-                FolderPath = string.Empty;
+                FolderPaths.Clear();
                 res = false;
             }
             return res;
@@ -148,25 +168,29 @@ namespace MessageDialogManagerLib
         /// <param name="title">Sets the title of the dialog</param>
         /// <param name="initialPath">Sets the initial path of the dialog</param>
         /// <param name="filter">Sets a filter to show only the files that meet the filter</param>
+        /// <param name="allowMultiSelect">Allow multiple files selection</param>
         /// <returns>Returns if a file has been selected</returns>
-        public bool ShowFileBrowser(string title, string initialPath, string filter)
+        public bool ShowFileBrowser(string title, string initialPath, string filter, bool allowMultiSelect = false)
         {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = filter,
+                Title = title, 
+                Multiselect = allowMultiSelect
+            };
             if (Directory.Exists(initialPath))
                 openFileDialog.InitialDirectory = initialPath;
             else
                 openFileDialog.InitialDirectory = "";
-            openFileDialog.Filter = filter;
-            openFileDialog.Title = title;
             bool res;
             if (openFileDialog.ShowDialog() == true)
             {
-                FilePath = openFileDialog.FileName;
+                FilePaths = new List<string>(openFileDialog.FileNames);
                 res = true;
             }
             else
             {
-                FilePath = string.Empty;
+                FilePaths.Clear();
                 res = false;
             }
             return res;

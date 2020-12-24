@@ -12,8 +12,10 @@ namespace NetFrameworkSample.ViewModel
         public MainWindowViewModel(IMessageDialogManager messageDialogManager)
         {
             _messageDialogManager = messageDialogManager;
-            ShowFolderBrowserCommand = new Command(ShowFolderBrowserCommandExecute, ShowFolderBrowserCommandCanExecute);
-            ShowFileBrowserCommand = new Command(ShowFileBrowserCommandExecute, ShowFileBrowserCommandCanExecute);
+            ShowFolderBrowserSingleCommand = new Command(ShowFolderBrowserSingleCommandExecute, ShowFolderBrowserSingleCommandCanExecute);
+            ShowFileBrowserSingleCommand = new Command(ShowFileBrowserSingleCommandExecute, ShowFileBrowserSingleCommandCanExecute);
+            ShowFolderBrowserMultipleCommand = new Command(ShowFolderBrowserMultipleCommandExecute, ShowFolderBrowserMultipleCommandCanExecute);
+            ShowFileBrowserMultipleCommand = new Command(ShowFileBrowserMultipleCommandExecute, ShowFileBrowserMultipleCommandCanExecute);
             ShowInfoDialogCommand = new Command(ShowInfoDialogCommandExecute, ShowInfoDialogCommandCanExecute);
             ShowOkCancelDialogCommand = new Command(ShowOkCancelDialogCommandExecute, ShowOkCancelDialogCommandCanExecute);
             ShowProgressCommand = new Command(ShowProgressCommandExecute, ShowProgressCommandCanExecute);
@@ -21,9 +23,13 @@ namespace NetFrameworkSample.ViewModel
             ShowSaveFileDialogCommand = new Command(ShowSaveFileDialogCommandExecute, ShowSaveFileDialogCommandCanExecute);
         }
 
-        public ICommand ShowFolderBrowserCommand { get; private set; }
+        public ICommand ShowFolderBrowserSingleCommand { get; private set; }
 
-        public ICommand ShowFileBrowserCommand { get; private set; }
+        public ICommand ShowFileBrowserSingleCommand { get; private set; }
+
+        public ICommand ShowFolderBrowserMultipleCommand { get; private set; }
+
+        public ICommand ShowFileBrowserMultipleCommand { get; private set; }
 
         public ICommand ShowInfoDialogCommand { get; private set; }
 
@@ -35,12 +41,12 @@ namespace NetFrameworkSample.ViewModel
 
         public ICommand ShowSaveFileDialogCommand { get; private set; }
 
-        private bool ShowFolderBrowserCommandCanExecute()
+        private bool ShowFolderBrowserSingleCommandCanExecute()
         {
             return true;
         }
 
-        private async void ShowFolderBrowserCommandExecute()
+        private async void ShowFolderBrowserSingleCommandExecute()
         {
             if (_messageDialogManager.ShowFolderBrowser("Select a folder", ""))
                 await _messageDialogManager.ShowInfoDialogAsync("Folder Selected", _messageDialogManager.FolderPath);
@@ -48,18 +54,60 @@ namespace NetFrameworkSample.ViewModel
                 await _messageDialogManager.ShowInfoDialogAsync("No folder has been selected", _messageDialogManager.FolderPath);
         }
 
-        private bool ShowFileBrowserCommandCanExecute()
+        private bool ShowFileBrowserSingleCommandCanExecute()
         {
             return true;
         }
 
-        private async void ShowFileBrowserCommandExecute()
+        private async void ShowFileBrowserSingleCommandExecute()
         {
             if (_messageDialogManager.ShowFileBrowser("Select a file", "", "*.* | *.*"))
                 await _messageDialogManager.ShowInfoDialogAsync("File Selected", _messageDialogManager.FilePath);
             else
                 await _messageDialogManager.ShowInfoDialogAsync("No file has been selected", _messageDialogManager.FilePath);
         }
+
+        //---------------------------------------------------------------------------------------------
+        private bool ShowFolderBrowserMultipleCommandCanExecute()
+        {
+            return true;
+        }
+
+        private async void ShowFolderBrowserMultipleCommandExecute()
+        {
+            if (_messageDialogManager.ShowFolderBrowser("Select a folder", "", true))
+            {
+                string selected = string.Empty;
+                foreach (var folder in _messageDialogManager.FolderPaths)
+                {
+                    selected += $"{folder}\n";
+                }
+                await _messageDialogManager.ShowInfoDialogAsync("Folders Selected", selected);
+            }
+            else
+                await _messageDialogManager.ShowInfoDialogAsync("No folder has been selected", _messageDialogManager.FolderPath);
+        }
+
+        private bool ShowFileBrowserMultipleCommandCanExecute()
+        {
+            return true;
+        }
+
+        private async void ShowFileBrowserMultipleCommandExecute()
+        {
+            if (_messageDialogManager.ShowFileBrowser("Select a file", "", "*.* | *.*", true))
+            {
+                string selected = string.Empty;
+                foreach (var file in _messageDialogManager.FilePaths)
+                {
+                    selected += $"{file}\n";
+                }
+                await _messageDialogManager.ShowInfoDialogAsync("File Selected", selected);
+            }
+            else
+                await _messageDialogManager.ShowInfoDialogAsync("No file has been selected", _messageDialogManager.FilePath);
+        }
+        //---------------------------------------------------------------------------------------------
 
         private async void ShowInfoDialogCommandExecute()
         {
